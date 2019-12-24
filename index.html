@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Exemplo 1</title>
+	<title>Calculadora</title>
 	<link rel="stylesheet" href="index.css">
 	<script src="https://kit.fontawesome.com/5fe61bae6a.js" crossorigin="anonymous"></script>
 </head>
@@ -12,26 +12,26 @@
 
 		<div class="opcoes">
 			<div id="numbers">
-				<button type="button" class="back">
+				<button type="button" class="back" onclick="backValue()">
 					<i class="fas fa-long-arrow-alt-left"></i>
 				</button>
-				<input type="button" class="button" value="7">
-				<input type="button" class="button" value="8">
-				<input type="button" class="button" value="9">
-				<input type="button" class="button" value="4">
-				<input type="button" class="button" value="5">
-				<input type="button" class="button" value="6">
-				<input type="button" class="button" value="1">
-				<input type="button" class="button" value="2">
-				<input type="button" class="button" value="3">
-				<input type="button" class="button largerRow" value="0">
+				<input type="button" class="button" onclick="insertValue('7')" value="7">
+				<input type="button" class="button" onclick="insertValue('8')" value="8">
+				<input type="button" class="button" onclick="insertValue('9')" value="9">
+				<input type="button" class="button" onclick="insertValue('4')" value="4">
+				<input type="button" class="button" onclick="insertValue('5')" value="5">
+				<input type="button" class="button" onclick="insertValue('6')" value="6">
+				<input type="button" class="button" onclick="insertValue('1')" value="1">
+				<input type="button" class="button" onclick="insertValue('2')" value="2">
+				<input type="button" class="button" onclick="insertValue('3')" value="3">
+				<input type="button" class="button largerRow" onclick="insertValue('0')" value="0">
 			</div>
 			<div id="operators">
-				<input type="button" class="button" value="+" id="soma">
-				<input type="button" class="button" value="-" id="sub">
-				<input type="button" class="button" value="*" id="mult">
-				<input type="button" class="button" value="/" id="div">
-				<button id="id" type="button" class="clear button">C</button>
+				<input type="button" class="button" onclick="insertValue('+')" value="+">
+				<input type="button" class="button" onclick="insertValue('-')" value="-">
+				<input type="button" class="button" onclick="insertValue('*')" value="*">
+				<input type="button" class="button" onclick="insertValue('/')" value="/">
+				<button type="button" class="clear button" onclick="clearRegister()">C</button>
 				<button type="button" class="calc button largerColumn">=</button>
 			</div>
 		</div>
