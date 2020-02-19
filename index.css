@@ -59,6 +59,7 @@ form {
 	background-color: transparent; 	
 }
 #numbers .largerRow {
+	/*width: 100%;*/
 	width: 58%;
 	height: auto;
 }
