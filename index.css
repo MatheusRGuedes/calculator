@@ -59,9 +59,15 @@ form {
 	background-color: transparent; 	
 }
 #numbers .largerRow {
-	width: 100%;
+	width: 58%;
 	height: auto;
 }
+
+#numbers .coma {
+	width: 32%;
+	height: auto;
+}
+
 #operators .button {
 	width: 100%;
 	height: 30px;
