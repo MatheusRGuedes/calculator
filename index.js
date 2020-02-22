@@ -74,9 +74,9 @@ function calc() {
 	if ( field.innerHTML ) {
 
 		//troca a virgula por ponto e faz a conta
-		let conta = eval( field.innerHTML.replace(',', '.') );
+		let conta = eval( converter(field.innerHTML, "virgulaPorPonto") );
 
-		field.innerHTML = addVirgula( conta.toString() ); //converte para string o res do eval
+		field.innerHTML = converter( conta.toString(), "pontoPorVirgula" ); //converte para string o res do eval
 
 	}
 };
@@ -86,19 +86,32 @@ const calculate = document.querySelector('.calc');
 calculate.onclick = function() { calc() };
 
 
-function addVirgula ( str ) {
+function converter ( str, opc ) {
 	//debugger
-	let virgula = false, 
-		count;
+	let count;
 
-	//sem advirgula( valor.toString() ) da undefined na propriedade length
-	for ( count = 0; count < str.length; count++ ) {
-		if ( str[count] === "." ) {
-			virgula = true;
-			break;
+	//eval returna tipo numerico e sem advirgula( valor.toString() ) da undefined na propriedade length
+	if ( opc === 'pontoPorVirgula' ) {
+		for ( count = 0; count < str.length; count++ ) {
+			if ( str[count] === "." ) {		
+
+				str = str.replace(str[count], ",");
+	
+				//break;
+					
+			}
+		}
+	} else if ( opc === 'virgulaPorPonto' ) {
+		for ( count = 0; count < str.length; count++ ) {
+			if ( str[count] === "," ) {
+
+				str = str.replace(str[count], ".");
+
+				//break;
+
+			}
 		}
 	}
 
-	if ( virgula == false ) return str;
-	else return str.replace('.', ',');
+	return str;
 };
