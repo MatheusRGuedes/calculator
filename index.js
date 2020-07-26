@@ -5,7 +5,10 @@ const buttons = document.querySelectorAll('.button'),
 	  clr = document.querySelector('.clear'),
 	  field = document.getElementById('res');
 
-//criar botao para adicionar vírgula
+/*
+	Correções a fazer:
+	- corrigir a questão de um número tem mais de uma virgula
+*/
 
 let operators = [ '-', '+', '*', '/', ',' ],
 	inserted = 0,
@@ -22,7 +25,7 @@ function insertValue( value ) {
 	}
 
 	//diminui a fonte qnto maior for o res
-	if ( conta.length > 6 && conta.length % 2) {
+	if ( conta.length > 6 && conta.length % 2 ) {
 		fontSize -= 1.5;
 		document.getElementById('res').style.fontSize = fontSize + "px";
 	}
@@ -30,27 +33,34 @@ function insertValue( value ) {
 	//identifica o primeiro operador selecionado
 	if ( operators.includes( value ) && inserted == 0 ) {
 		inserted = 1;
-		field.innerHTML += value;
+
+		if (conta.length == 1 && conta === '0')
+			field.innerHTML += '0' + value;
+		else 
+			field.innerHTML += value;
 	}
 
-	//não repete o operador
-	else if ( inserted != 1 || ! operators.includes( value ) ) {
-		inserted = 0;
+	//não repete o operador e insere número
+	else if ( inserted != 1 || !operators.includes( value ) ) {
+		
 		field.innerHTML += value;
 	}
 
 	//troca o operador para o atual
-	else if ( operators.includes(value) && value != conta.charAt( conta.length - 1 ) ) {
-		field.innerHTML = conta.substring(0, conta.length - 1) + value; 
+	else if ( operators.includes(value) && 
+		      operators.includes(conta.charAt( conta.length - 1 )) ) {
+
+		field.innerHTML = conta.substring(0, conta.length - 1) + value;
 		//alert(conta.charAt( conta.length - 1 ));
 	}
+
+	else field.innerHTML += value;
 }
 
 //nome clear apenas, nao pode é uma função existente
 function clearRegister () {
-
 	document.getElementById('res').innerHTML = '0';
-
+	inserted = 0;
 };
 
 
@@ -65,7 +75,6 @@ function backValue () {
 	} else if ( conta && conta.length == 1 ) {
 
 		field.innerHTML = '0';
-
 	}
 };
 
@@ -87,30 +96,27 @@ calculate.onclick = function() { calc() };
 
 
 function converter ( str, opc ) {
-	//debugger
 	let count;
 
 	//eval returna tipo numerico e sem advirgula( valor.toString() ) da undefined na propriedade length
-	if ( opc === 'pontoPorVirgula' ) {
-		for ( count = 0; count < str.length; count++ ) {
-			if ( str[count] === "." ) {		
+	switch(opc) {
+		case "pontoPorVirgula":
+			for ( count = 0; count < str.length; count++ ) {
+				if ( str[count] === "." ) {		
 
-				str = str.replace(str[count], ",");
-	
-				//break;
-					
+					str = str.replace(str[count], ",");
+				}
 			}
-		}
-	} else if ( opc === 'virgulaPorPonto' ) {
-		for ( count = 0; count < str.length; count++ ) {
-			if ( str[count] === "," ) {
+			break;
 
-				str = str.replace(str[count], ".");
+		case "virgulaPorPonto":
+			for ( count = 0; count < str.length; count++ ) {
+				if ( str[count] === "," ) {
 
-				//break;
-
+					str = str.replace(str[count], ".");
+				}
 			}
-		}
+			break;
 	}
 
 	return str;
