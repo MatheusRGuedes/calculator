@@ -121,3 +121,15 @@ function converter ( str, opc ) {
 
 	return str;
 };
+
+/*
+function possuiVirgula(str) {
+	if ( str != "" ) {
+		for ( let count = 0; count < str.length; count++ ) {
+			if ( str[count] === "," )
+				return true;
+		}
+	}
+
+	return false;
+} */
