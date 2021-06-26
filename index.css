@@ -47,6 +47,7 @@ form {
 	outline: none;
 	background-color: transparent;
 }
+
 #numbers .button {
 	width: 29%;
 	height: 55px;
@@ -58,6 +59,7 @@ form {
 	padding: 0px;
 	background-color: transparent; 	
 }
+
 #numbers .largerRow {
 	/*width: 100%;*/
 	width: 58%;
